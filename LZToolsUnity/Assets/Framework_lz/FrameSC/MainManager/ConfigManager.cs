@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using U3DConfigManager;
+
 
 namespace FrameWork_lz
 {
@@ -28,22 +28,22 @@ namespace FrameWork_lz
         {
             instance = this;
             // 添加配置监听
-            if (ClientConfigManager.Instance != null)
-            {
-                ClientConfigManager.Instance.OnClientConfigUpdate += OnClientConfigUpdate;
-            }
-            // 启动时主动解析一次配置
-            if (ClientConfigManager.Instance != null)
-            {
-                string config = ClientConfigManager.Instance.GetClientConfigStr();
-                if (string.IsNullOrEmpty(config) == false)
-                {
-                    if (ResolveConfig(config))
-                    {
-                        StartCoroutine(ShowThemeFrameVideo());
-                    }
-                }
-            }
+            //if (ClientConfigManager.Instance != null)
+            //{
+            //    ClientConfigManager.Instance.OnClientConfigUpdate += OnClientConfigUpdate;
+            //}
+            //// 启动时主动解析一次配置
+            //if (ClientConfigManager.Instance != null)
+            //{
+            //    string config = ClientConfigManager.Instance.GetClientConfigStr();
+            //    if (string.IsNullOrEmpty(config) == false)
+            //    {
+            //        if (ResolveConfig(config))
+            //        {
+            //            StartCoroutine(ShowThemeFrameVideo());
+            //        }
+            //    }
+            //}
         }
 
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
-using G58NS.NewNetworkNS;
+
 using UnityEngine.Networking;
 
 namespace FrameWork_lz
@@ -163,33 +163,33 @@ namespace FrameWork_lz
             return true;
         }
 
-        /// <summary>
-        /// Get请求
-        /// </summary>
-        /// <param name="mono"></param>
-        /// <param name="url"></param>
-        /// <param name="actionResult"></param>
-        /// <param name="onFail"></param>
-        /// <param name="timeOut"></param>
-        public static void _GetWebRequest(MonoBehaviour mono, string url, Action<UnityWebRequest> actionResult, System.Action<string> onFail, int timeOut = 10)
-        {
-            if (string.IsNullOrEmpty(url))
-                return;
-            if (!url.StartsWith("http") && !url.StartsWith("HTTP") && ClientDataHandler.Instance)
-            {
-                Action<string> OutResourceLoad = (error) =>
-                {
-                    var outUrl = ClientDataHandler.Instance.RegisterResult.urlMap.outResourceUrl + url;
-                    mono.StartCoroutine(_Get(outUrl, actionResult, onFail));
-                };
-                var inUrl = ClientDataHandler.Instance.RegisterResult.urlMap.inResourceUrl + url;
-                mono.StartCoroutine(_Get(inUrl, actionResult, OutResourceLoad));
-            }
-            else
-            {
-                mono.StartCoroutine(_Get(url, actionResult, onFail));
-            }
-        }
+        ///// <summary>
+        ///// Get请求
+        ///// </summary>
+        ///// <param name="mono"></param>
+        ///// <param name="url"></param>
+        ///// <param name="actionResult"></param>
+        ///// <param name="onFail"></param>
+        ///// <param name="timeOut"></param>
+        //public static void _GetWebRequest(MonoBehaviour mono, string url, Action<UnityWebRequest> actionResult, System.Action<string> onFail, int timeOut = 10)
+        //{
+        //    if (string.IsNullOrEmpty(url))
+        //        return;
+        //    if (!url.StartsWith("http") && !url.StartsWith("HTTP") && ClientDataHandler.Instance)
+        //    {
+        //        Action<string> OutResourceLoad = (error) =>
+        //        {
+        //            var outUrl = ClientDataHandler.Instance.RegisterResult.urlMap.outResourceUrl + url;
+        //            mono.StartCoroutine(_Get(outUrl, actionResult, onFail));
+        //        };
+        //        var inUrl = ClientDataHandler.Instance.RegisterResult.urlMap.inResourceUrl + url;
+        //        mono.StartCoroutine(_Get(inUrl, actionResult, OutResourceLoad));
+        //    }
+        //    else
+        //    {
+        //        mono.StartCoroutine(_Get(url, actionResult, onFail));
+        //    }
+        //}
 
         /// <summary>
         /// GET请求
@@ -253,58 +253,58 @@ namespace FrameWork_lz
             }
         }
 
-        /// <summary>
-        /// 下载文件
-        /// </summary>
-        /// <param name="url"></param>
-        /// <param name="onSuccess"></param>
-        /// <param name="onFail"></param>
-        public static void DownloadFile(MonoBehaviour mono, string url, System.Action<byte[]> onSuccess, System.Action<string> onFail)
-        {
-            if (string.IsNullOrEmpty(url))
-                return;
-            if (!url.StartsWith("http") && !url.StartsWith("HTTP") && ClientDataHandler.Instance)
-            {
-                Action<string> OutResourceLoad = (error) =>
-                {
-                    var outUrl = ClientDataHandler.Instance.RegisterResult.urlMap.outResourceUrl + url;
-                    mono.StartCoroutine(AnsyLoadFile(outUrl, onSuccess, onFail, 60));
-                };
-                var inUrl = ClientDataHandler.Instance.RegisterResult.urlMap.inResourceUrl + url;
-                mono.StartCoroutine(AnsyLoadFile(inUrl, onSuccess, OutResourceLoad, 180));
-            }
-            else
-            {
-                mono.StartCoroutine(AnsyLoadFile(url, onSuccess, onFail, 180));
-            }
-        }
+        ///// <summary>
+        ///// 下载文件
+        ///// </summary>
+        ///// <param name="url"></param>
+        ///// <param name="onSuccess"></param>
+        ///// <param name="onFail"></param>
+        //public static void DownloadFile(MonoBehaviour mono, string url, System.Action<byte[]> onSuccess, System.Action<string> onFail)
+        //{
+        //    if (string.IsNullOrEmpty(url))
+        //        return;
+        //    if (!url.StartsWith("http") && !url.StartsWith("HTTP") && ClientDataHandler.Instance)
+        //    {
+        //        Action<string> OutResourceLoad = (error) =>
+        //        {
+        //            var outUrl = ClientDataHandler.Instance.RegisterResult.urlMap.outResourceUrl + url;
+        //            mono.StartCoroutine(AnsyLoadFile(outUrl, onSuccess, onFail, 60));
+        //        };
+        //        var inUrl = ClientDataHandler.Instance.RegisterResult.urlMap.inResourceUrl + url;
+        //        mono.StartCoroutine(AnsyLoadFile(inUrl, onSuccess, OutResourceLoad, 180));
+        //    }
+        //    else
+        //    {
+        //        mono.StartCoroutine(AnsyLoadFile(url, onSuccess, onFail, 180));
+        //    }
+        //}
 
-        /// <summary>
-        /// 下载音频文件
-        /// </summary>
-        /// <param name="mono"></param>
-        /// <param name="url"></param>
-        /// <param name="onSuccess"></param>
-        /// <param name="onFail"></param>
-        public static void DownloadAudio(MonoBehaviour mono, string url, System.Action<AudioClip> onSuccess, System.Action<string> onFail)
-        {
-            if (string.IsNullOrEmpty(url))
-                return;
-            if (!url.StartsWith("http") && !url.StartsWith("HTTP") && ClientDataHandler.Instance)
-            {
-                Action<string> OutResourceLoad = (error) =>
-                {
-                    var outUrl = ClientDataHandler.Instance.RegisterResult.urlMap.outResourceUrl + url;
-                    mono.StartCoroutine(AnsyLoadAudio(url, onSuccess, onFail));
-                };
-                var inUrl = ClientDataHandler.Instance.RegisterResult.urlMap.inResourceUrl + url;
-                mono.StartCoroutine(AnsyLoadAudio(url, onSuccess, OutResourceLoad, 3));
-            }
-            else
-            {
-                mono.StartCoroutine(AnsyLoadAudio(url, onSuccess, onFail));
-            }
-        }
+        ///// <summary>
+        ///// 下载音频文件
+        ///// </summary>
+        ///// <param name="mono"></param>
+        ///// <param name="url"></param>
+        ///// <param name="onSuccess"></param>
+        ///// <param name="onFail"></param>
+        //public static void DownloadAudio(MonoBehaviour mono, string url, System.Action<AudioClip> onSuccess, System.Action<string> onFail)
+        //{
+        //    if (string.IsNullOrEmpty(url))
+        //        return;
+        //    if (!url.StartsWith("http") && !url.StartsWith("HTTP") && ClientDataHandler.Instance)
+        //    {
+        //        Action<string> OutResourceLoad = (error) =>
+        //        {
+        //            var outUrl = ClientDataHandler.Instance.RegisterResult.urlMap.outResourceUrl + url;
+        //            mono.StartCoroutine(AnsyLoadAudio(url, onSuccess, onFail));
+        //        };
+        //        var inUrl = ClientDataHandler.Instance.RegisterResult.urlMap.inResourceUrl + url;
+        //        mono.StartCoroutine(AnsyLoadAudio(url, onSuccess, OutResourceLoad, 3));
+        //    }
+        //    else
+        //    {
+        //        mono.StartCoroutine(AnsyLoadAudio(url, onSuccess, onFail));
+        //    }
+        //}
 
         /// <summary>
         /// 加载音频文件
@@ -344,38 +344,38 @@ namespace FrameWork_lz
             }
         }
 
-        /// <summary>
-        /// 下载图片资源
-        /// </summary>
-        /// <param name="url"></param>
-        /// <param name="onFinish"></param>
-        /// <param name="onError"></param>
-        public static void DownloadTexture(MonoBehaviour mono, string url, Action<Texture2D> onFinish, Action<string> onError)
-        {
-            if (string.IsNullOrEmpty(url)
-                //|| !ClientDataHandler.Instance
-                //|| null == ClientDataHandler.Instance.RegisterResult
-                //|| null == ClientDataHandler.Instance.RegisterResult.urlMap
-                )
-            {
-                if (null != onError) onError("网络初始化失败！");
-                return;
-            }
-            if (!url.StartsWith("file://") && !url.StartsWith("http") && !url.StartsWith("HTTP") && ClientDataHandler.Instance)
-            {
-                Action<string> OutResourceLoad = (error) =>
-                {
-                    var outUrl = ClientDataHandler.Instance.RegisterResult.urlMap.outResourceUrl + url;
-                    mono.StartCoroutine(AnsyDowloadTexture(outUrl, onFinish, onError));
-                };
-                var inUrl = ClientDataHandler.Instance.RegisterResult.urlMap.inResourceUrl + url;
-                mono.StartCoroutine(AnsyDowloadTexture(inUrl, onFinish, OutResourceLoad, 3));
-            }
-            else
-            {
-                mono.StartCoroutine(AnsyDowloadTexture(url, onFinish, onError));
-            }
-        }
+        ///// <summary>
+        ///// 下载图片资源
+        ///// </summary>
+        ///// <param name="url"></param>
+        ///// <param name="onFinish"></param>
+        ///// <param name="onError"></param>
+        //public static void DownloadTexture(MonoBehaviour mono, string url, Action<Texture2D> onFinish, Action<string> onError)
+        //{
+        //    if (string.IsNullOrEmpty(url)
+        //        //|| !ClientDataHandler.Instance
+        //        //|| null == ClientDataHandler.Instance.RegisterResult
+        //        //|| null == ClientDataHandler.Instance.RegisterResult.urlMap
+        //        )
+        //    {
+        //        if (null != onError) onError("网络初始化失败！");
+        //        return;
+        //    }
+        //    if (!url.StartsWith("file://") && !url.StartsWith("http") && !url.StartsWith("HTTP") && ClientDataHandler.Instance)
+        //    {
+        //        Action<string> OutResourceLoad = (error) =>
+        //        {
+        //            var outUrl = ClientDataHandler.Instance.RegisterResult.urlMap.outResourceUrl + url;
+        //            mono.StartCoroutine(AnsyDowloadTexture(outUrl, onFinish, onError));
+        //        };
+        //        var inUrl = ClientDataHandler.Instance.RegisterResult.urlMap.inResourceUrl + url;
+        //        mono.StartCoroutine(AnsyDowloadTexture(inUrl, onFinish, OutResourceLoad, 3));
+        //    }
+        //    else
+        //    {
+        //        mono.StartCoroutine(AnsyDowloadTexture(url, onFinish, onError));
+        //    }
+        //}
 
         /// <summary>
         /// 下载图片
